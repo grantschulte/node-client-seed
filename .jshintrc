@@ -10,6 +10,7 @@
   "node": true,
   "quotmark": "double",
   "undef": true,
+  "unused": true,
   "globals": {
     "Request": true
   }
