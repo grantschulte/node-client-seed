@@ -14,10 +14,10 @@ const assetManifest = new ManifestPlugin({
 const config = {
   devtool: "source-map",
   entry: {
-    app: "./src/index.js"
+    app: "./app/index"
   },
   output: {
-    path: path.resolve(__dirname) + "/public",
+    path: path.resolve(__dirname) + "/dist",
     filename: "scripts/[name].js"
   },
   module: {
@@ -49,7 +49,15 @@ const config = {
   },
   plugins: [
     extractSass
-  ]
+  ],
+  resolve: {
+    modules: [
+      "node_modules",
+      path.resolve(__dirname, "app")
+    ],
+    extensions: [".js", ".scss"]
+  },
+  target: "web"
 };
 
 module.exports = config;

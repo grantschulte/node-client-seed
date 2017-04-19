@@ -1,4 +1,6 @@
 {
+  "asi": true,
+  "browser": true,
   "camelcase": true,
   "curly": true,
   "esversion": 6,
@@ -7,6 +9,8 @@
   "maxlen": 80,
   "node": true,
   "quotmark": "double",
-  "trailing": true,
-  "undef": true
+  "undef": true,
+  "globals": {
+    "Request": true
+  }
 }

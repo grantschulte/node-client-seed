@@ -3,7 +3,7 @@
     "start": "webpack-dev-server --content-base / --progress --colors --inline",
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
-    "lint": "jslint src/**/*.js"
+    "lint": "jshint app/*.js"
   },
   "dependencies": {
     "babel": "^6.23.0",
