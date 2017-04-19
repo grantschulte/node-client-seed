@@ -1,3 +1,4 @@
+import "./styles/global.scss";
 import "./styles/user-item.scss";
 
 function fetchUsers() {
