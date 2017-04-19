@@ -1,21 +1,25 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ManifestPlugin    = require('webpack-manifest-plugin');
 
 const extractSass = new ExtractTextPlugin({
-  filename: "app.css",
+  filename: "styles/app.css",
   disable: process.env.NODE_ENV === "development"
 });
 
+const assetManifest = new ManifestPlugin({
+  fileName: "asset-manifest.json"
+});
+
 const config = {
+  devtool: "source-map",
   entry: {
     app: "./src/index.js"
   },
-
   output: {
-    filename: "app.js",
-    path: path.resolve(__dirname) + "/public/assets"
+    path: path.resolve(__dirname) + "/public",
+    filename: "scripts/[name].js"
   },
-
   module: {
     rules: [
       {
@@ -27,11 +31,7 @@ const config = {
       {
         test: /\.scss$/,
         use: extractSass.extract({
-          use: [{
-            loader: "css-loader"
-          }, {
-            loader: "sass-loader"
-          }],
+          use: ["css-loader", "sass-loader"],
           fallback: "style-loader"
         })
       },
@@ -47,14 +47,9 @@ const config = {
       }
     ]
   },
-
   plugins: [
     extractSass
-  ],
-
-  resolve: {
-    extensions: [".js"]
-  }
+  ]
 };
 
 module.exports = config;

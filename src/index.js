@@ -1,3 +1,5 @@
+import "./styles/user-item.scss";
+
 function fetchUsers() {
   const url  = "http://localhost:5000/user/users";
   const opts = { method: "GET", mode: "cors" };
@@ -21,6 +23,7 @@ function handleJson(json) {
 
   json.forEach(user => {
     let userItem = document.createElement("div");
+    userItem.classList.add("user-item");
     userItem.innerHTML = `<div>${user.username}</div>`;
     userItem.innerHTML += `<div>${user._id}</div>`;
     items.appendChild(userItem);
