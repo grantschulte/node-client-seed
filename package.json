@@ -2,6 +2,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base public/ --progress --colors --inline",
     "build": "webpack",
+    "watch": "webpack --progress --colors --watch",
     "lint": "jslint src/**/*.js"
   },
   "dependencies": {

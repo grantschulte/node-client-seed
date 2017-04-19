@@ -13,8 +13,7 @@ const config = {
 
   output: {
     filename: "app.js",
-    path: path.resolve(__dirname) + "/public/assets",
-    publicPath: "/assets/"
+    path: path.resolve(__dirname) + "/public/assets"
   },
 
   module: {

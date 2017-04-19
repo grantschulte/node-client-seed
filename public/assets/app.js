@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/assets/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -73,11 +73,42 @@
 "use strict";
 
 
-function init() {
-  console.log("App initialized.");
+function fetchUsers() {
+  var url = "http://localhost:5000/user/users";
+  var opts = { method: "GET", mode: "cors" };
+  var req = new Request(url, opts);
+
+  fetch(req).then(function (res) {
+    return res.json();
+  }).then(function (json) {
+    handleJson(json);
+  }).catch(function (error) {
+    handleError(error);
+  });
 }
 
-init();
+function handleJson(json) {
+  var container = document.getElementById("container");
+  var items = document.createDocumentFragment();
+
+  json.forEach(function (user) {
+    var userItem = document.createElement("div");
+    userItem.innerHTML = "<div>" + user.username + "</div>";
+    userItem.innerHTML += "<div>" + user._id + "</div>";
+    items.appendChild(userItem);
+  });
+
+  container.appendChild(items);
+}
+
+function handleError(error) {
+  console.log("ERROR", error);
+}
+
+window.onload = function () {
+  console.log("Initialized");
+  fetchUsers();
+};
 
 /***/ })
 /******/ ]);
